@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-5 card p-4">
+        <h3 class="text-center mb-4">Register</h3>
+        <form method="POST">
+            <label>Role</label>
+            <select name="role" class="form-select mb-3" onchange="d=document; d.getElementById('s-box').style.display=this.value=='student'?'block':'none'; d.getElementById('c-box').style.display=this.value=='company'?'block':'none';">
+                <option value="student">Student</option>
+                <option value="company">Company</option>
+            </select>
+            <label>Username</label>
+            <input type="text" name="username" class="form-control mb-3" required>
+            <label>Password</label>
+            <input type="password" name="password" class="form-control mb-3" required>
+            
+            <div id="s-box">
+                <label>Name</label><input type="text" name="full_name" class="form-control mb-2">
+                <label>Email</label><input type="email" name="email" class="form-control mb-2">
+            </div>
+            
+            <div id="c-box" style="display:none;">
+                <label>Company Name</label><input type="text" name="company_name" class="form-control mb-2">
+                <label>Website</label><input type="text" name="website" class="form-control mb-2" placeholder="company.com">
+            </div>
+            
+            <button class="btn btn-primary w-100 mt-2">Sign Up</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

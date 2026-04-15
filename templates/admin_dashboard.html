@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="mb-4">Admin Home</h2>
+<div class="row text-center mb-4">
+    <div class="col"><div class="card p-3"><h6>Students</h6><h3>{{stats.s}}</h3></div></div>
+    <div class="col"><div class="card p-3"><h6>Companies</h6><h3>{{stats.c}}</h3></div></div>
+    <div class="col"><div class="card p-3"><h6>Drives</h6><h3>{{stats.d}}</h3></div></div>
+    <div class="col"><div class="card p-3"><h6>Apps</h6><h3>{{stats.a}}</h3></div></div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 card p-4 mb-3">
+        <h5>Pending Companies</h5><hr>
+        {% for c in p_comp %}
+            <div class="d-flex justify-content-between mb-2">
+                <span>{{ c.name }}</span>
+                <a href="/admin/approve/{{c.id}}" class="btn btn-sm btn-success">Approve</a>
+            </div>
+        {% else %}<p>No pending approvals.</p>{% endfor %}
+    </div>
+    <div class="col-md-6 card p-4 mb-3">
+        <h5>Pending Drives</h5><hr>
+        {% for d in p_drive %}
+            <div class="d-flex justify-content-between mb-2">
+                <span>{{ d.title }} ({{d.name}})</span>
+                <a href="/admin/approve_drive/{{d.id}}" class="btn btn-sm btn-success">Approve</a>
+            </div>
+        {% else %}<p>All drives approved.</p>{% endfor %}
+    </div>
+</div>
+<div class="mt-3"><a href="/admin/manage" class="btn btn-secondary px-4">Manage All Users</a></div>
+{% endblock %}

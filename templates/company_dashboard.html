@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="d-flex justify-content-between mb-4">
+    <h2>Welcome, {{ company.name }}</h2>
+    <a href="/company/create" class="btn btn-primary">Add Job Drive</a>
+</div>
+
+<div class="card p-4">
+    <table class="table">
+        <thead><tr><th>Drive Title</th><th>Deadline</th><th>Status</th><th>Apps</th><th>Action</th></tr></thead>
+        <tbody>
+            {% for d in drives %}
+            <tr>
+                <td>{{ d.title }}</td>
+                <td>{{ d.deadline[:10] }}</td>
+                <td>{{ d.status }}</td>
+                <td>{{ d.count }}</td>
+                <td><a href="/company/applicants/{{d.id}}" class="btn btn-sm btn-outline-primary">View Students</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

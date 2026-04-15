@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+    <div class="col-md-8">
+        <h3 class="mb-4">Available Job Drives</h3>
+        {% for d in drives %}
+        <div class="card p-4 mb-3">
+            <h5 class="fw-bold">{{ d.title }}</h5>
+            <p class="text-primary mb-1">{{ d.name }}</p>
+            <p class="small text-muted mb-3">Ends: {{ d.deadline[:10] }}</p>
+            <a href="/student/apply/{{d.id}}" class="btn btn-success btn-sm w-25">Apply Now</a>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="col-md-4">
+        <div class="card p-3 mb-4"><a href="/student/profile" class="btn btn-outline-primary">Edit My Profile</a></div>
+        <div class="card p-4">
+            <h5>My Applications</h5><hr>
+            {% for a in apps %}
+                <div class="mb-3">
+                    <strong>{{ a.title }}</strong><br>
+                    <small>{{a.name}} - <span class="badge bg-secondary">{{ a.status }}</span></small>
+                </div>
+            {% else %}<p>Not applied to any drive.</p>{% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

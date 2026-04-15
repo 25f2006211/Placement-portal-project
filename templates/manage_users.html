@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>Search & Manage Users</h3>
+<form class="d-flex mb-4">
+    <input name="search" class="form-control me-2" placeholder="Search by name...">
+    <button class="btn btn-primary">Search</button>
+</form>
+
+<div class="row">
+    <div class="col-md-6 card p-3 mb-3">
+        <h5>Students</h5><hr>
+        {% for s in students %}
+            <div class="d-flex justify-content-between mb-2">
+                <span>{{s.full_name}} ({{'Blocked' if s.is_blacklisted else 'Active'}})</span>
+                <a href="/admin/block/{{s.user_id}}" class="btn btn-sm btn-danger">Toggle</a>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="col-md-6 card p-3 mb-3">
+        <h5>Companies</h5><hr>
+        {% for c in companies %}
+            <div class="d-flex justify-content-between mb-2">
+                <span>{{c.name}} ({{'Blocked' if c.is_blacklisted else 'Active'}})</span>
+                <a href="/admin/block/{{c.user_id}}" class="btn btn-sm btn-danger">Toggle</a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

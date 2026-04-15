@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<h3 class="mb-4">Applicants: {{ d.title }}</h3>
+<div class="card p-4">
+    <table class="table">
+        <thead><tr><th>Name</th><th>CGPA</th><th>Status</th><th>Update</th></tr></thead>
+        <tbody>
+            {% for a in apps %}
+            <tr>
+                <td>{{a.full_name}}<br><small class="text-muted">{{a.email}}</small></td>
+                <td>{{a.cgpa}}</td>
+                <td>{{a.status}}</td>
+                <td>
+                    <form action="/company/status/{{a.aid}}" method="POST" class="d-flex">
+                        <select name="status" class="form-select form-select-sm me-2">
+                            <option value="Shortlisted">Shortlist</option>
+                            <option value="Selected">Select</option>
+                            <option value="Rejected">Reject</option>
+                        </select>
+                        <button class="btn btn-sm btn-primary">Update</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
